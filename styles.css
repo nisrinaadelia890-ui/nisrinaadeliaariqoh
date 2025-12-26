@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&display=swap');
+:root{
+    --bg-dark: #0e0708;
+    --burgundy: #3b0b0f; /* darker */
+    --mid-burgundy: #220609;
+    --cream: #F7EFE6;
+    --gold: #D4AF37;
+    --gold-2: #FFD36B;
+    --muted: #9A938F;
+    --glass: rgba(255,255,255,0.04);
+    --card-bg: rgba(255,255,255,0.02);
+    --text-light: #F7EFE6;
+    --text-dark: #111827;
+}
+html,body{height:100%;}
+/* page background: dramatic burgundy to cream gradient with subtle sheen */
+body{font-family: 'Inter', sans-serif; background-image: linear-gradient(135deg,var(--burgundy) 0%, var(--mid-burgundy) 36%, var(--cream) 100%); color:var(--text-light); position:relative;}
+
+/* fabric texture overlay (subtle) */
+body::before{
+    content:"";
+    position:fixed; inset:0; pointer-events:none;
+    background-image: radial-gradient(rgba(255,255,255,0.02) 0.75px, transparent 0.75px);
+    background-size:12px 12px; opacity:0.45; mix-blend-mode:soft-light; z-index:0;
+}
+
+/* gold foil sheen */
+.gold-foil{
+    position:fixed; inset:0; pointer-events:none; z-index:1; opacity:0.14;
+    background-image: linear-gradient(120deg, rgba(212,175,55,0.08), rgba(255,211,120,0.03));
+    mix-blend-mode:screen;
+}
+
+/* Lightweight metallic veins using subtle SVG pattern (repeat) */
+.gold-foil::after{
+    content:""; position:absolute; inset:0; background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><g fill="none" stroke="rgba(212,175,55,0.18)" stroke-width="1"><path d="M0 100 C50 60 150 140 200 100"/><path d="M0 130 C60 100 140 160 200 120"/></g></svg>'); background-repeat:repeat; opacity:0.85; mix-blend-mode:overlay;}
+
+/* Luxury editorial styles (from attached doc): typography, layout, texture */
+.serif{font-family:'Cormorant Garamond', 'Playfair Display', serif}
+h1.serif{letter-spacing:0.02em}
+
+/* hero layout */
+.hero{display:flex; flex-direction:column; gap:2rem; align-items:center; z-index:2; position:relative}
+@media(min-width:768px){
+    .hero{flex-direction:row; align-items:stretch}
+    .hero .hero-left{flex:1; text-align:left}
+    .hero .hero-right{flex:1}
+}
+
+.hero-title{font-size:2.25rem; line-height:1.03}
+@media(min-width:768px){ .hero-title{font-size:3.2rem} }
+
+.lead{color:var(--muted); font-weight:300; letter-spacing:0.02em}
+
+/* product cards: cream panels with gold accent */
+.product-card{background:var(--cream); color:var(--burgundy); border-radius:14px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.12); border-left:4px solid var(--gold)}
+.product-card .meta{color:var(--muted)}
+
+/* image treatment */
+.img--framed{border-radius:12px; overflow:hidden; box-shadow:0 12px 30px rgba(0,0,0,0.25); transform:translateY(0); transition:transform .35s ease}
+.img--framed img{display:block; width:100%; height:auto; object-fit:cover; filter:saturate(.95) contrast(1.03) sepia(.02)}
+.img--framed:hover{transform:translateY(-6px)}
+
+/* divider with gold accent */
+.divider{height:2px; background:linear-gradient(90deg, transparent, var(--gold), transparent); width:120px; margin:2rem 0}
+
+/* refine CTAs */
+.btn-accent{background:linear-gradient(90deg,var(--gold),var(--gold-2)); color:#221814; border:1px solid rgba(0,0,0,0.06); padding:.9rem 1.25rem}
+.glass{background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(0,0,0,0.12)); backdrop-filter:blur(8px); border:1px solid rgba(255,255,255,0.06)}
+
+/* misc */
+.muted-cream{color:rgba(255,255,255,0.9)}
+.small-muted{color:rgba(0,0,0,0.45)}
+
+@media (min-width:768px){
+    .hero-title{font-size:3.5rem}
+}
